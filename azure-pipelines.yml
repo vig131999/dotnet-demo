@@ -2,7 +2,10 @@ trigger:
 - main
 
 pool:
-  name: 'sai'
+  name: Default
+  demands:
+  - agent -equals val
+
 
 variables:
   buildConfiguration: 'Release'
