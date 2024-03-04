@@ -22,3 +22,24 @@ steps:
     command: 'publish'
     arguments: '--configuration $(buildConfiguration)'
   displayName: 'dotnet build $(buildConfiguration)'
+- task: AzureFunctionOnKubernetes@1
+  inputs:
+    connectionType: 'Kubernetes Service Connection'
+    dockerRegistryServiceConnection: 'myacr3641'
+    kubernetesServiceConnection: 'my-aks-cluster-test'
+    namespace: 'test'
+    appName: 'myapp'
+- task: Docker@2
+  inputs:
+    containerRegistry: 'myacr3641'
+    repository: 'demo'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+
+- task: AzureFunctionOnKubernetes@1
+  inputs:
+    connectionType: 'Kubernetes Service Connection'
+    dockerRegistryServiceConnection: 'myacr3641'
+    kubernetesServiceConnection: 'my-aks-cluster-test'
+    namespace: 'prod'
+    appName: 'myapp'    
