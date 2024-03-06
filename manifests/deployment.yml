@@ -16,4 +16,4 @@ spec:
         - name: dotnetdemo 
           image: myacr3641.azurecr.io/image
           ports:
-          - containerPort: 5000
+          - containerPort: 80
