@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: dotnetdemo 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dotnetdemo
+  template:
+    metadata:
+      labels:
+        app: dotnetdemo 
+    spec:
+      containers:
+        - name: dotnetdemo 
+          image: vigneshregistry.azurecr.io/image123
+          ports:
+          - containerPort: 80
